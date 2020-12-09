@@ -1,4 +1,4 @@
-from model import db, User, Language, connect_to_db, Character, Campaign, CharacterLanguage, Race, RaceTrait
+from model import db, User, Language, connect_to_db, Character, Campaign, CharacterLanguage, Race, RaceTrait, Trait
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
@@ -13,6 +13,12 @@ def create_race(race_name):
   race = Race(race_name)
 
   db.session.add(race)
+  db.session.commit()
+
+def create_trait(trait_name, trait_description):
+  trait = Trait(trait_name=trait_name, trait_description=trait_description)
+
+  db.session.add(trait)
   db.session.commit()
 
 def create_campaign(campaign_name, campaign_dm):
@@ -40,7 +46,7 @@ def create_character(character_name, race, language, campaign, character_owner, 
   race_id = Race.query.filter_by(race_name=race).first().race_id
 
 
-  character = Character(character_name=character_name, race=race campaign=campaign, character_owner=character_owner, character_skills=character_id, strength=strength, dex=dex, con=con, intel=intel, wis=wis, cha=cha, speed=speed)
+  character = Character(character_name=character_name, race=race, campaign=campaign, character_owner=character_owner, strength=strength, dex=dex, con=con, intel=intel, wis=wis, cha=cha, speed=speed)
 
   db.session.add(character, character_language)
   db.session.commit()

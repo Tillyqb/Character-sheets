@@ -32,6 +32,14 @@ def seed_languages():
 
 seed_languages()
 
+def seed_races():
+  crud.create_race('Dog')
+
+seed_races()
+
+def seed_traits():
+  crud.create_trait('')
+
 def seed_characters():
   crud.create_character('Canem Dolor', 'Dog', 'comon', 1, 1, 5, 20, 10, 10, 5, 20, 20)
 
