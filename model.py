@@ -45,8 +45,8 @@ class Character(db.Model):
   campaign = db.Column(db.Integer, ForeignKey("campaigns.campaign_id"))
   character_name = db.Column(db.String)
   character_owner = db.Column(db.Integer, ForeignKey("users.user_id"))
-  languages = db.Column(db.Integer, unique=True)
   character_skills = db.Column(db.Integer, ForeignKey("users.user_id"), unique=True)
+  race = db.Column(db.integer, ForeignKey("races.race_id"))
   strength = db.Column(db.Integer)
   dex = db.Column(db.Integer)
   con = db.Column(db.Integer)
@@ -54,19 +54,47 @@ class Character(db.Model):
   wis = db.Column(db.Integer)
   cha = db.Column(db.Integer)
   speed = db.Column(db.Integer)
+  character_xp = db.Column(db.Integer, default=0)
 
   campaigns = relationship("Campaign", primaryjoin="Campaign.campaign_id==Character.campaign")
   users = relationship("User", primaryjoin="User.user_id==Character.character_owner")
+  races = relationship("Race", primaryjoin="Race.race_id==Character.race")
+
+class Race(db.Model):
+
+  __tablename__ = 'races'
+
+  race_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+  race_name = db.Column(db.String)
+
+class RaceTrait(db.Model):
+
+  __tablename__ = 'race_traits'
+
+  rt_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+  rt_race = db.Column(db.Integer, ForeignKey("races.race_id"))
+  rt_trait = db.Column(db.integer, ForeignKey("traits.trait_id"))
+
+  races = relationship("Race", primaryjoin='Race.race_id==RaceTrait.rt_race')
+  traits = relationship("Trait", primaryjoin='Trait.trait_id==RaceTrait.rt_trait')
+
+class Trait(db.model):
+
+  __tablename__ = 'traits'
+
+  trait_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+  trait_name = db.Column(db.String)
+  trait_description = db.Column(db.Text)
 
 class CharacterLanguage(db.Model):
 
   __tablename__ = 'character_languages'
 
   cl_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-  cl_character = db.Column(db.Integer, ForeignKey("characters.languages"))
+  cl_character = db.Column(db.Integer, ForeignKey("characters.character_id"))
   cl_language = db.Column(db.Integer, ForeignKey("languages.language_id"))
 
-  characters = relationship("Character", primaryjoin="Character.languages==CharacterLanguage.cl_character")
+  characters = relationship("Character", primaryjoin="Character.character_id==CharacterLanguage.cl_character")
   languages = relationship("Language", primaryjoin="Language.language_id==CharacterLanguage.cl_language")
 
 class Language(db.Model):
