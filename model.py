@@ -65,7 +65,32 @@ class Race(db.Model):
   __tablename__ = 'races'
 
   race_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+  race_description = db.Column(db.Text)
+  race_society = db.Column(db.Text)
+  race_relations = db.Column(db.Text)
+  race_alignment_and_religeon = db.Column(db.Text)
+  race_adventurers = db.Column(db.Text)
   race_name = db.Column(db.String)
+  race_size = db.Column(db.String)
+  touch_ac = db.Column(db.integer)
+  flat-footed_ac = db.Column(db.integer)
+
+class RaceSubtype(db.Model):
+
+  __tablename__ = 'race_subtypes'
+
+  rs_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+  rs_relation = db.Column(db.Integer, ForeignKey("races.race_id"))
+  rs_description = db.Column(db.Text)
+
+class Feat(db.Model):
+  
+  __tablename__ = 'feats'
+
+  feat_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+  feat_description = db.Column(db.Text)
+  feat_prerequesites = db.Column(db.Text)
+  feat_Benefits = db.Column(db.Text)
 
 class RaceTrait(db.Model):
 
@@ -74,6 +99,7 @@ class RaceTrait(db.Model):
   rt_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
   rt_race = db.Column(db.Integer, ForeignKey("races.race_id"))
   rt_trait = db.Column(db.integer, ForeignKey("traits.trait_id"))
+  primary_trait = db.Column(db.Boolean, default=True)
 
   races = relationship("Race", primaryjoin='Race.race_id==RaceTrait.rt_race')
   traits = relationship("Trait", primaryjoin='Trait.trait_id==RaceTrait.rt_trait')
