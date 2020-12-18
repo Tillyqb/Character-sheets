@@ -10,7 +10,7 @@ def create_user(user_name, password, email, f_name):
   return (user.f_name)
 
 def create_race(race_name):
-  race = Race(race_name)
+  race = Race(race_name=race_name)
 
   db.session.add(race)
   db.session.commit()
@@ -46,7 +46,7 @@ def create_character(character_name, race, language, campaign, character_owner, 
   race_id = Race.query.filter_by(race_name=race).first().race_id
 
 
-  character = Character(character_name=character_name, race=race, campaign=campaign, character_owner=character_owner, strength=strength, dex=dex, con=con, intel=intel, wis=wis, cha=cha, speed=speed)
+  character = Character(character_name=character_name, race=race_id, campaign=campaign, character_owner=character_owner, strength=strength, dex=dex, con=con, intel=intel, wis=wis, cha=cha, speed=speed)
 
   db.session.add(character, character_language)
   db.session.commit()
