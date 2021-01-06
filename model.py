@@ -18,7 +18,7 @@ class Race(db.Model):
   __tablename__ = 'races'
 
   race_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-  name = db.Column(db.String)
+  name = db.Column(db.String, unique=True)
 
 class Campaign(db.Model):
   __tablename__ = 'campaigns'
@@ -62,10 +62,10 @@ class CharacterLanguage(db.Model):
   languages = relationship("Language", primaryjoin="Language.language_id==CharacterLanguage.cl_language")
   characters = relationship("Character", primaryjoin="Character.character_id==CharacterLanguage.cl_character")
 
-def connect_to_db(flask_app, echo=True, db_uri='postgresql://charactersheets'):
+def connect_to_db(flask_app, echo=True, db_uri='postgresql:///charactersheets'):
   flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
   flask_app.config['SQLALCHEMY_ECHO'] = echo
   flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
   db.app = flask_app
   db.init_app(flask_app)
-  print('Connected to the db!')
+  print('Connected to the db!', db_uri)

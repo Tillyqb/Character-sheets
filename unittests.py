@@ -4,22 +4,51 @@ from server import app
 from crud import create_user, create_race, create_campaign, create_language, create_character
 import os
 
+class RouteTests(unittest.TestCase):
+  
+  @classmethod
+  def setUpClass(cls):
+    connect_to_db(app, False, 'postgresql:///testdb')
+    os.system('dropdb testdb')
+    os.system('createdb testdb')
+    db.create_all()
+    create_race("Dog")
+    create_language("Common")
+    character_name = "Canem Dolor"
+    race = "Dog"
+    language = "Common"
+    campaign_name = "Cryos Super Wolves"
+    owner = "Temmi"
+    strength = 6
+    dex = 20
+    con = 14
+    intel = 10
+    wis = 10
+    cha = 20
+    speed = 40
+    create_character(character_name, race, language, campaign_name, owner, strength, dex, con, intel, wis, cha, speed)
+
+  @classmethod
+  def tearDownClass(cls):
+    pass
+
+  def test_hompage(self):
+    with app.test_client() as c:
+      response = c.get('/')
+      self.assertEqual(response.status_code, 200)
+
 
 
 class DatabaseTests(unittest.TestCase):
   
   @classmethod
   def setUpClass(cls):
-    connect_to_db(app, True, 'postgresql:///testdb')
+    connect_to_db(app, False, 'postgresql:///testdb')
     os.system('dropdb testdb')
     os.system('createdb testdb')
     db.create_all()
     create_race("Dog")
     create_language("Common")
-
-  @classmethod
-  def tearDownClass(cls):
-    pass
 
   def test_add_user(self):
     create_user('Tills', 'hash', 'matilda.basner@gmail.com', 'Matilda', 'Basner')

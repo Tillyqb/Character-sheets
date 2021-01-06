@@ -1,1 +1,89 @@
 
+body {
+  color: #080808;
+}
+
+#logoheader {
+  font-family: fantasy;
+  font-size: 60px;
+  font-style: italic;
+  font-weight: bold;
+}
+#logo-text {
+  font-family: fantasy;
+  font-size: 25px;
+  font-style: italic;
+}
+
+/*#root {background-color: #410041;
+  color: pink;
+} 
+
+#logo {
+  font-family: 'Times New Roman', Times, serif;
+  margin: 100px,15%;
+  width: 125em;
+  height: 50em;
+  position: center;
+  font-weight: 700;
+}
+
+#alert{
+  display: block;
+  width: 40%
+}
+
+*/.topNav {
+  font-family: serif;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  color: #101010;
+}/*
+
+.text-entry {
+  width: 300px
+}
+
+.button {
+  display: block;
+  color: #d5a2ff;
+  background-color: black;
+  font-weight: bold;
+  border-width: 0px;
+  margin: 5px;
+}
+*/
+.button {
+  font-size: x-small;
+  display: block;
+  color: #aa51f3f3;
+  background-color: #101010;
+  font-weight: bold;
+  border-width: 0px;
+  padding: 4px 10px;
+  margin: 5px;
+}/*
+.checkbox {
+  width: 300
+}
+
+.clickylink {
+  display: inline-block;
+  color: #d5a2ff;
+  background-color: black;
+  padding: 8px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px
+}
+
+#leftMargin {
+  display: block;
+  margin-left: 10%;
+}
+
+.link {
+  color: lightskyblue
+} */

@@ -8,6 +8,17 @@ def create_user(user_name, passhash, email, f_name, l_name):
   db.session.commit()
   return user_name
 
+def check_user(user_name):
+  check = User.query.filter(User.user_name==user_name).first()
+  return (type(check) == User)
+
+def validate_user(user_name, passhash):
+  user = User.query.filter(User.user_name==user_name).first()
+  if user.passhash==passhash:\
+    return user_name
+  else:
+    return False
+
 def create_race(race_name):
   race = Race(name=race_name)
   db.session.add(race)
