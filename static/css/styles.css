@@ -1,6 +1,7 @@
 
 body {
   color: #080808;
+  margin-left: 10em;
 }
 
 #logoheader {
@@ -14,10 +15,6 @@ body {
   font-size: 25px;
   font-style: italic;
 }
-
-/*#root {background-color: #410041;
-  color: pink;
-} 
 
 #logo {
   font-family: 'Times New Roman', Times, serif;
@@ -33,13 +30,13 @@ body {
   width: 40%
 }
 
-*/.topNav {
+.topNav {
   font-family: serif;
   font-weight: bold;
   display: block;
   text-align: center;
   color: #101010;
-}/*
+}
 
 .text-entry {
   width: 300px
@@ -53,7 +50,7 @@ body {
   border-width: 0px;
   margin: 5px;
 }
-*/
+
 .button {
   font-size: x-small;
   display: block;
@@ -63,7 +60,8 @@ body {
   border-width: 0px;
   padding: 4px 10px;
   margin: 5px;
-}/*
+}
+
 .checkbox {
   width: 300
 }
@@ -86,4 +84,4 @@ body {
 
 .link {
   color: lightskyblue
-} */
+} 

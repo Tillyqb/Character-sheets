@@ -1,11 +1,11 @@
 function CreateUser(props) {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [email2, setEmail2] = React.useState('');
-  const [password2, setPassword2] = React.useState('');
-  const [userName, setUserName] = React.useState('');
-  const [fName, setFName] = React.useState('');
-  const [lName, setLName] = React.useState('');
+  let email = props.email
+  let email2 = props.email2
+  let fName = props.fName
+  let lName = props.lName
+  let userName = props.userName
+  let password = props.password
+  let password2 = props.password2
 
   const history = useHistory()
   
@@ -16,103 +16,95 @@ function CreateUser(props) {
     const payload = {
       email: email,
       email2: email2,
-      passHash: password,
-      passHash2: password2,
+      password: password,
+      password2: password2,
       userName: userName,
       fName: fName,
       lName: lName
     }
 
-    console.log(payload)
-    console.log(JSON.stringify(payload))
-  
-
     const options = {
       method: 'POST',
       body: JSON.stringify(payload),
-      headers: {
+      headers:{
         'Content-Type': 'application/json'
       }
     }
-    console.log(payload)
+
     fetch('/api/new-user', options)
     .then(response => response.json())
     .then(data => {
       console.log(data)
       if (data === 'good registaration') {
+        props.setCurrentUser(userName)
+        localStorage.setItem('currentUser', JSON.stringify(userName));
         props.setShowAlert(true)
-        props.setAlertText('Account created successfully, please log in')
+        props.setAlertText('Account creation successfully, logged in.')
         props.setAlertType('success')
         props.setAlertButtonType('outline-success')
-        history.push('/login')
-      } else if (data === 'email in system') {        
-        props.setShowAlert(true)
-        props.setAlertText('Email is already in use')
-        props.setAlertType('danger')
-        props.setAlertButtonType('outline-danger')
-      } else if (data === 'email mismatch') {
-        props.setShowAlert(true)
-        props.setAlertText('Emails do not match')
-        props.setAlertType('danger')
-        props.setAlertButtonType('outline-danger')
-      } else if (data === 'password mismatch') {
-        props.setShowAlert(true)
-        props.setAlertText('Passwords do not match')
-        props.setAlertType('danger')
-        props.setAlertButtonType('outline-danger')
+        history.push('/')
+      } else if(data === 'email in system') {
+        props.setShowAlert(True)
+        props.setAlertText('That email is already in the system. \n Please either log in \n or use a different email.')
+        props.setAlertType('warning')
+        props.setAlertButtonType('ouline-warning')
+      } else if(data === 'email mismatch') {
+        props.setShowAlert(True)
+        props.setAlertText("Emails don't match, please try again")
+        props.setAlertType('warning')
+        props.setAlertButtonType('ouline-warning')
+      } else if(data === 'password mismatch') {
+        props.setShowAlert(True)
+        props.setAlertText("Emails don't match, please try again")
+        props.setAlertType('warning')
+        props.setAlertButtonType('ouline-warning')
       }
-    }).catch(error => console.log('error in account creation', error))
+    })
   }
 
-  function handleEmailChange(evt) 
-  {
-    evt.preventDefault()
-    console.log(evt.target.value)
-    setEmail(evt.target.value)
-  }
+    function handlePassword2Change(evt) {
+      evt.preventDefault()
+      props.setPassword2(evt.target.value)
+      console.log(evt.target.value)
+    }
 
-  function handleEmail2Change(evt) 
-  {
-    evt.preventDefault()
-    console.log(evt.target.value)
-    setEmail2(evt.target.value)
-  }
+    function handlePasswordChange(evt) {
+      evt.preventDefault()
+      props.setPassword(evt.target.value)
+      console.log(evt.target.value)
+    }
 
-  function handleUserNameChange(evt)
-  {
-    evt.preventDefault()
-    console.log(evt.target.Value)
-    setUserName(evt.target.Value)
-    console.log(userName)
-  }
+    function handleLNameChange(evt) {
+      evt.preventDefault()
+      props.setLName(evt.target.value)
+      console.log(evt.target.value)
+    }
+    
+    function handleFNameChange(evt) {
+      evt.preventDefault()
+      props.setFName(evt.target.value)
+      console.log(evt.target.value)
+    }
 
-  function handleFNameChange(evt)
-  {
-    evt.preventDefault()
-    console.log(evt.target.Value)
-    setFName(evt.target.Value)
-  }
+    function handleUserNameChange(evt) {
+      evt.preventDefault()
+      props.setUserName(evt.target.value)
+      console.log(evt.target.value)
+    }
 
-  function handleLNameChange(evt)
-  {
-    evt.preventDefault()
-    console.log(evt.target.Value)
-    setLName(evt.target.Value)
-  }
+    function handleEmailChange(evt) {
+      evt.preventDefault()
+      props.setEmail(evt.target.value)
+      console.log(evt.target.value)
+    }
 
-  function handlePasswordChange(evt) 
-  {
-    evt.preventDefault()
-    console.log(evt.target.value)
-    setPassword(evt.target.value)
-  }
+    function handleEmail2Change(evt) {
+      evt.preventDefault()
+      props.setEmail2(evt.target.value)
+      console.log(evt.target.value)
+    }
 
-  function handlePassword2Change(evt) 
-  {
-    evt.preventDefault()
-    console.log(evt.target.value)
-    setPassword2(evt.target.value)
-  }
+    
 
   return (
     <div className="base">

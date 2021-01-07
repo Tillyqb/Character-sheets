@@ -3,7 +3,7 @@ from model import connect_to_db
 from crud import create_user, check_user, validate_user
 
 app=Flask(__name__)
-
+@app.route("/new-user")
 @app.route("/")
 def homepage():
   return render_template('root.html')
@@ -12,7 +12,7 @@ def homepage():
 def login(): 
     data = request.get_json()
     user_name = data['userName']
-    passHash = data['password']
+    password = data['password']
 
     if check_user(user_name) == False:
         print('bad email')
@@ -31,8 +31,8 @@ def regiter():
     print(data)
     email = data['email']
     email2 = data['email2']
-    passHash = data['passHash']
-    passHashh2 = data['passHash2']
+    password = data['password']
+    password2 = data['password2']
     f_name = data['fName']
     l_name = data['lName']
     user_name = data['userName']
@@ -41,9 +41,9 @@ def regiter():
         print('good email')
         if email == email2:
             print('emails match')
-            if passHash == passHash2:
+            if password == password2:
                 print('passwords match')
-                create_user(userName, passHash, email, f_name, l_name)
+                create_user(user_name, password, email, f_name, l_name)
                 return jsonify('good registaration')
             else:
                 return jsonify('password mismatch')

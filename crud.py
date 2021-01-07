@@ -2,8 +2,8 @@ from model import connect_to_db, db, User, Race, Campaign, Language, Character, 
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
-def create_user(user_name, passhash, email, f_name, l_name):
-  user = User(user_name=user_name, email=email, passhash=passhash, f_name=f_name, l_name=l_name)
+def create_user(user_name, password, email, f_name, l_name):
+  user = User(user_name=user_name, email=email, password=password, f_name=f_name, l_name=l_name)
   db.session.add(user)
   db.session.commit()
   return user_name
@@ -12,9 +12,9 @@ def check_user(user_name):
   check = User.query.filter(User.user_name==user_name).first()
   return (type(check) == User)
 
-def validate_user(user_name, passhash):
+def validate_user(user_name, password):
   user = User.query.filter(User.user_name==user_name).first()
-  if user.passhash==passhash:\
+  if user.password==password:
     return user_name
   else:
     return False

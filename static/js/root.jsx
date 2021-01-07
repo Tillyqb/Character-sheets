@@ -3,7 +3,6 @@ function Homepage() {
 }
 
 function App() {
-  const [player, setPlayer] = React.useState('')
   const [characterName, setCharacterName] = React.useState('')
   const [alignment, setAlignment] = React.useState('')
   const [level, setLevel] = React.useState(0)
@@ -22,6 +21,14 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState()
   const [alertType, setAlertType] = React.useState('')
   const [alertButtonType, setAlertButtonType] = React.useState('')
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [email2, setEmail2] = React.useState('');
+  const [password2, setPassword2] = React.useState('');
+  const [userName, setUserName] = React.useState('');
+  const [fName, setFName] = React.useState('');
+  const [lName, setLName] = React.useState('');
+  
   const history = useHistory()
 
   React.useEffect(() => {
@@ -64,7 +71,7 @@ function App() {
           <LogIn currentUser={currentUser} setCurrentUser={setCurrentUser} setAlertText={setAlertText} setAlertType={setAlertType} setAlertButtonType={setAlertButtonType} setShowAlert={setShowAlert} />
         </Route>
         <Route path="/new-user">
-          <CreateUser currentUser={currentUser} setCurrentUser={setCurrentUser} setAlertText={setAlertText} setAlertType={setAlertType} setAlertButtonType={setAlertButtonType} setShowAlert={setShowAlert} />
+          <CreateUser currentUser={currentUser} setCurrentUser={setCurrentUser} setAlertText={setAlertText} setAlertType={setAlertType} setAlertButtonType={setAlertButtonType} setShowAlert={setShowAlert} email={email} setEmail={setEmail} email2={email2} setEmail2={setEmail2} password={password} setPassword={setPassword} password2={password2} setPassword2={setPassword2} userName={userName} setUserName={setUserName} fName={fName} setFName={setFName} lName={lName} setLName={setLName} />
         </Route>
         <Route path="/">
           <Homepage />

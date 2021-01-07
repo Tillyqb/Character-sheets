@@ -1,5 +1,4 @@
 function LogIn(props) { 
-  // angie deleted incoming props bc they were not being used
   const [userName, setUserName] = React.useState('');
   const [password, setPassword] = React.useState('');
   const history = useHistory()
