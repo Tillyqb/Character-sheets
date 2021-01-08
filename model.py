@@ -32,6 +32,12 @@ class Language(db.Model):
   language_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
   name = db.Column(db.String)
 
+class CharacterClass(db.Model):
+  __tablename__ = 'characterclasses'
+
+  class_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+  class_name = db.Column(db.String)
+
 class Character(db.Model):
   __tablename__ = 'characters'
 
@@ -47,10 +53,12 @@ class Character(db.Model):
   wis = db.Column(db.Integer)
   cha = db.Column(db.Integer)
   speed = db.Column(db.Integer)
+  character_class = db.Column(db.Integer, ForeignKey('characterclasses.class_id'))
 
   users = relationship("User", primaryjoin="User.user_id==Character.owner")
   campaigns = relationship("Campaign", primaryjoin="Campaign.campaign_id==Character.campaign")
   races = relationship("Race", primaryjoin="Race.race_id==Character.race")
+  classes = relationship("CharacterClass", primaryjoin="Character.character_class==CharacterClass.class_id")
 
 class CharacterLanguage(db.Model):
   __tablename__ = 'cls'

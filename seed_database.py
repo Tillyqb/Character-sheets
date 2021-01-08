@@ -7,7 +7,7 @@ import crud
 from model import *
 
 app = Flask(__name__)
-connect_to_db(app, False, 'postgresql:///charactersheets')
+connect_to_db(app, True, 'postgresql:///charactersheets')
 os.system('dropdb charactersheets')
 os.system('createdb charactersheets')
 db.create_all()
