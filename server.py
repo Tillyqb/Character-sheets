@@ -18,7 +18,7 @@ def login():
         print('bad email')
         return jsonify('bad email')
     else:
-        if validate_user(user_name, passHash):
+        if validate_user(user_name, password):
             print('Good login')
             return jsonify("Good login")
         else:
