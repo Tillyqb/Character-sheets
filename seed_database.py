@@ -6,10 +6,8 @@ from flask import Flask
 import crud
 from model import *
 
-app = Flask(__name__)
-connect_to_db(app, True, 'postgresql:///charactersheets')
-os.system('dropdb charactersheets')
-os.system('createdb charactersheets')
-db.create_all()
+if __name__ == "__main__":
+  from server import create_app
+  create_app()  
 
     

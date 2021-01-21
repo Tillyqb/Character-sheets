@@ -27,6 +27,14 @@ class Campaign(db.Model):
   users = relationship("User", primaryjoin="User.user_id == Campaign.dm")
   name = db.Column(db.String)
 
+  @classmethod
+  def get_campaign_list(self):
+    campaigns = self.query.filter().all()
+    campaign_name_list = []
+    for campaign in campaigns:
+      campaign_name_list.append(campaign.name)
+    return campaign_name_list
+
 class Language(db.Model):
   __tablename__ = 'languages'
   language_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
@@ -77,3 +85,7 @@ def connect_to_db(flask_app, echo=True, db_uri='postgresql:///charactersheets'):
   db.app = flask_app
   db.init_app(flask_app)
   print('Connected to the db!', db_uri)
+
+if __name__ == "__main__":
+  from server import create_app
+  app = create_app()  

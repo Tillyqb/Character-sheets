@@ -50,3 +50,7 @@ def create_character(character_name, race, language, campaign_name, owner, stren
   cl = CharacterLanguage(cl_language=language_id, cl_character=character_id)
   return character_name
 
+if __name__ == "__main__":
+  from server import create_app
+  create_app()    
+

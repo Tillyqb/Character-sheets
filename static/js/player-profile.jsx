@@ -3,7 +3,23 @@ function UserProfile (props) {
 
   function handleCreatCharacterRedirect(evt) {
     evt.preventDefault()
-    history.push('/create-character')
+
+    const payload = {}
+
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    fetch('/api/get-campaign-list', options)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      props.setCampaignList(data)
+      history.push('/create-character')
+    })  
   }
 
   return (

@@ -21,68 +21,54 @@ function TopNav(props){
     evt.preventDefault()
     history.push('/')
   }
+
+  function handleProfileRedirect(evt) {
+    evt.preventDefault()
+    history.push('/profile')
+  }
+
   return(
     <div>
         {props.currentUser ?
       <Navbar className="topNav" expand="lg">
         <div className="row">
-          <div className="col-1 order-1">
-            <Button className="button" onClick={handleLoginRedirect}>
-              log in
-            </Button>
-            <Button className="button" onClick={handleLogout}>
+          <div className="col-3 order-1">
+            <Link className="clickylink" onClick={handleLogout}>
               log out
-            </Button>
-            <Button className="button" onClick={handleCharacterChangeRedirect}>
+            </Link>
+            <Link className="clickylink" onClick={handleCharacterChangeRedirect}>
               Change Character
-            </Button>
-            <Button className="button" onClick={handleCreateUserRedirect}>
+            </Link>
+            <Link className="clickylink" onClick={handleCreateUserRedirect}>
               Create User
-            </Button>
+            </Link>
           </div>
-          <div className="col-3  order-2">
+          <div className="col-6  order-2">
             <div id="logoheader">Pathfinder</div>
             <div id="logo-text">Character Sheet</div>
           </div>
-          <div className="col-4 order-3">
-            <div>
-              {props.characterName}{props.alignment}
-            </div>
-            <div>
-              {props.level}
-            </div>
-            <div>
-              {props.race}{props.size}{props.gender}{props.age}
-            </div>
-          </div>
-          <div className="col-4 order-4">
+          <div className="col-3 order-4">
             <div>
               {props.player}
             </div>
-            <div>
-              {props.deity}{props.homeland}
-            </div>
-            <div>
-              {props.height}{props.weight}{props.hair}{props.eyes}
-            </div>
+            <Link className="clickylink" onClick={handleProfileRedirect}>
+              Profile
+            </Link>
           </div> 
         </div>
       </Navbar>
         :  <Navbar className="topNav" expand="lg">
         <div className="row">
           <div className="col-1 order-1">
-            <Button className="button" onClick={handleLoginRedirect}>
+            <Link className="clickylink" onClick={handleLoginRedirect}>
               log in
-            </Button>
-            <Button className="button" onClick={handleLogout}>
-              log out
-            </Button>
-            <Button className="button" onClick={handleCharacterChangeRedirect}>
+            </Link>
+            <Link className="clickylink" onClick={handleCharacterChangeRedirect}>
               Change Character
-            </Button>
-            <Button className="button" onClick={handleCreateUserRedirect}>
+            </Link>
+            <Link className="clickylink" onClick={handleCreateUserRedirect}>
               Create User
-            </Button>
+            </Link>
           </div>
           <div className="col-3  order-2">
             <div id="logoheader">Pathfinder</div>

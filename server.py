@@ -1,8 +1,14 @@
 from flask import Flask, render_template, request, jsonify
-from model import connect_to_db
+from model import connect_to_db, db, Campaign
 from crud import create_user, check_user, validate_user
 
-app=Flask(__name__)
+def create_app():
+    app = Flask(__name__)
+    connect_to_db(app)
+    db.init_app(app)
+    return app
+
+app = create_app()
 
 @app.route("/profile")
 @app.route("/new-user")
@@ -54,6 +60,9 @@ def regiter():
     else:
         return jsonify('email in system')
 
+@app.route('/api/get-campaign-list', methods=["POST"])
+def get_campaign_list():
+    return jsonify(Campaign.get_campaign_list())
+
 if __name__ == "__main__":
-  connect_to_db(app)
-  app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')

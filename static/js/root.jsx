@@ -3,31 +3,35 @@ function Homepage() {
 }
 
 function App() {
-  const [characterName, setCharacterName] = React.useState('')
-  const [alignment, setAlignment] = React.useState('')
-  const [level, setLevel] = React.useState(0)
-  const [race, setRace] = React.useState('')
-  const [size, setSize] = React.useState('')
-  const [gender, setGender] = React.useState('')
   const [age, setAge] = React.useState(0)
-  const [deity, setDeity] = React.useState('')
-  const [homeland, setHomeland] = React.useState('')
-  const [height, setHeight] = React.useState('')
-  const [weight, setWeight] = React.useState('')
-  const [hair, setHair] = React.useState('')
-  const [eyes, setEyes] = React.useState('')
-  const [showAlert, setShowAlert] = React.useState(false)
-  const [alertText, setAlertText] = React.useState('')
-  const [currentUser, setCurrentUser] = React.useState()
-  const [alertType, setAlertType] = React.useState('')
-  const [alertButtonType, setAlertButtonType] = React.useState('')
+  const [alertButtonType, setAlertButtonType] = React.useState('');
+  const [alertText, setAlertText] = React.useState('');
+  const [alertType, setAlertType] = React.useState('');
+  const [alignment, setAlignment] = React.useState('');
+  const [campaign, setCampaign] = React.useState('');
+  const [campaignList, setCampaignList] = React.useState('');
+  const [characterName, setCharacterName] = React.useState('');
+  const [currentUser, setCurrentUser] = React.useState();
+  const [deity, setDeity] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
   const [email2, setEmail2] = React.useState('');
-  const [password2, setPassword2] = React.useState('');
-  const [userName, setUserName] = React.useState('');
+  const [eyes, setEyes] = React.useState('');
   const [fName, setFName] = React.useState('');
+  const [gender, setGender] = React.useState('');
+  const [hair, setHair] = React.useState('');
+  const [height, setHeight] = React.useState('');
+  const [homeland, setHomeland] = React.useState('');
+  const [level, setLevel] = React.useState(0);
   const [lName, setLName] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [password2, setPassword2] = React.useState('');
+  const [race, setRace] = React.useState('');
+  const [selectedCampaign, setSelectedCampaign] = React.useState('')
+  const [showAlert, setShowAlert] = React.useState(false);
+  const [size, setSize] = React.useState('');
+  const [userName, setUserName] = React.useState('');
+  const [weight, setWeight] = React.useState('');
+  
   
   const history = useHistory()
 
@@ -74,10 +78,10 @@ function App() {
           <CreateUser currentUser={currentUser} setCurrentUser={setCurrentUser} setAlertText={setAlertText} setAlertType={setAlertType} setAlertButtonType={setAlertButtonType} setShowAlert={setShowAlert} email={email} setEmail={setEmail} email2={email2} setEmail2={setEmail2} password={password} setPassword={setPassword} password2={password2} setPassword2={setPassword2} userName={userName} setUserName={setUserName} fName={fName} setFName={setFName} lName={lName} setLName={setLName} />
         </Route>
         <Route path="/profile">
-          <UserProfile characterName={characterName} setCharacterName={setCharacterName} userName={userName} />
+          <UserProfile characterName={characterName} setCharacterName={setCharacterName} userName={userName} campaignList={campaignList} setCampaignList={setCampaignList} />
         </Route>
         <Route path="/create-character">
-          <CreateCharacter characterName={characterName} setCharacterName={setCharacterName} />
+          <CreateCharacter characterName={characterName} setCharacterName={setCharacterName} campaign={campaign} setCampaign={setCampaign} campaignList={campaignList} setCampaignList={setCampaignList} selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} />
         </Route>
         <Route path="/">
           <Homepage />
