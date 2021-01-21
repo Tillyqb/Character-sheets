@@ -34,7 +34,7 @@ function LogIn(props) {
         props.setAlertText('Logged in successfully')
         props.setAlertType('success')
         props.setAlertButtonType('outline-success')
-        history.push('/')
+        history.push('/profile')
       } else if (data === 'bad email') {
         props.setShowAlert(true)
         props.setAlertText('user name is not in our system')

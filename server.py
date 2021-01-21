@@ -3,6 +3,8 @@ from model import connect_to_db
 from crud import create_user, check_user, validate_user
 
 app=Flask(__name__)
+
+@app.route("/profile")
 @app.route("/new-user")
 @app.route("/")
 def homepage():

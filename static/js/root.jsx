@@ -28,7 +28,6 @@ function App() {
   const [userName, setUserName] = React.useState('');
   const [fName, setFName] = React.useState('');
   const [lName, setLName] = React.useState('');
-  const [character, setCharacter] = React.useState({})
   
   const history = useHistory()
 
@@ -75,7 +74,10 @@ function App() {
           <CreateUser currentUser={currentUser} setCurrentUser={setCurrentUser} setAlertText={setAlertText} setAlertType={setAlertType} setAlertButtonType={setAlertButtonType} setShowAlert={setShowAlert} email={email} setEmail={setEmail} email2={email2} setEmail2={setEmail2} password={password} setPassword={setPassword} password2={password2} setPassword2={setPassword2} userName={userName} setUserName={setUserName} fName={fName} setFName={setFName} lName={lName} setLName={setLName} />
         </Route>
         <Route path="/profile">
-          <PlayerProfile character={character} setCharacter={setCharacter} />
+          <UserProfile characterName={characterName} setCharacterName={setCharacterName} userName={userName} />
+        </Route>
+        <Route path="/create-character">
+          <CreateCharacter characterName={characterName} setCharacterName={setCharacterName} />
         </Route>
         <Route path="/">
           <Homepage />
