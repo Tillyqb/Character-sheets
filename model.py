@@ -68,6 +68,15 @@ class Character(db.Model):
   races = relationship("Race", primaryjoin="Race.race_id==Character.race")
   classes = relationship("CharacterClass", primaryjoin="Character.character_class==CharacterClass.class_id")
 
+  @classmethod
+  def get_character_name_list_by_user_name(self, user_name):
+    user_id = User.query.filter_by(user_name=user_name).first().user_id
+    character_list = self.query.filter_by(owner=user_id).all()
+    character_name_list = []
+    for character in character_list:
+      character_name_list.append[character.name]
+    return character_name_list
+
 class CharacterLanguage(db.Model):
   __tablename__ = 'cls'
 

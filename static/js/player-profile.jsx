@@ -1,4 +1,6 @@
 function UserProfile (props) {
+
+  const [characterList, setCharacterList] = React.useState([]);
   const history = useHistory()
 
   function handleCreatCharacterRedirect(evt) {
@@ -22,6 +24,33 @@ function UserProfile (props) {
     })  
   }
 
+  function handleCharacterSelect(evt){
+    props.setCurrentCharacter(evt.target.value)
+  }
+
+  function handleCharacterListGenderation() {
+    const payload2 = {
+      user:currentUser
+    }
+
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(payload2),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }
+    
+    fetch('/api/get-character-list', options)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      setCharacterList(data)
+      console.log(characterList)
+    })
+  }
+  handleCharacterListGenderation
+
   return (
     <div>
       <div className="row">
@@ -33,24 +62,22 @@ function UserProfile (props) {
             Create Character
           </Link>
         </div>
-        {/* <div className="col-4 order-3">
+      </div>
+      <div className="row">
+        <div className="col-4 order-1">
           <Dropdown>
-            <Dropdown.Toggle variant="Dark">
-              <Dropdown.Menu>
-                {characters.map ((charcter) => (
-                  <Dropown.Item
-                    as={ItemGroup}
-                    key={character}
-                    title={character.name}
-                    >
-                      {character.name}
-                    </Dropown.Item>
-                  )
-                )}
-              </Dropdown.Menu>
+            <Dropdown.Toggle variant="secondary" id="dropdown">
+              Select Character
             </Dropdown.Toggle>
+            <Dropdown.Menu>
+            {props.characterList.map (character => (
+              <Dropdown.Item onSelect={handleCharacterSelect} value={character}>
+                {character}
+              </Dropdown.Item>
+            ))}
+            </Dropdown.Menu>
           </Dropdown>
-        </div> */}
+        </div>
       </div>
     </div>
   )

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from model import connect_to_db, db, Campaign
+from model import connect_to_db, db, Campaign, Character
 from crud import create_user, check_user, validate_user
 
 def create_app():
@@ -32,6 +32,17 @@ def login():
         else:
             print('bad password')
             return jsonify("bad password")
+
+@app.route("/api/get-character-list", methods=["POST"])
+def get_character_list():
+    data = request.get_json()
+    user_name = data['user']
+    character_list = Character.get_character_name_list_by_user_name(user_name)
+    if character_list == []:
+        character_list.append('(No characters exist for this player)')
+    print(character_list)
+    return jsonify(character_list)
+
 
 @app.route("/api/new-user", methods=["POST"])
 def regiter():

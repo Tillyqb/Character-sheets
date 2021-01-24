@@ -34,6 +34,24 @@ function LogIn(props) {
         props.setAlertText('Logged in successfully')
         props.setAlertType('success')
         props.setAlertButtonType('outline-success')
+
+        const payload = {
+          userName:props.CurrentUser
+        }
+    
+        const options = {
+          method: 'POST',
+          body: JSON.stringify(payload),
+          headers:{
+            'Content-Type': 'application/json'
+          }
+        }
+        
+        fetch('/api/get-character-list', options)
+        .then(response => response.json())
+        .then(data => {
+          props.setCharacterList(data)
+        })
         history.push('/profile')
       } else if (data === 'bad email') {
         props.setShowAlert(true)
