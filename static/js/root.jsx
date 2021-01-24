@@ -81,7 +81,7 @@ function App() {
           <UserProfile characterName={characterName} setCharacterName={setCharacterName} userName={userName} campaignList={campaignList} setCampaignList={setCampaignList} characterList={characterList} setCharacterList={setCharacterList} currentCharacter={currentCharacter} setCurrentCharacter={setCurrentCharacter} />
         </Route>
         <Route path="/create-character">
-          <CreateCharacter characterName={characterName} setCharacterName={setCharacterName} campaign={campaign} setCampaign={setCampaign} campaignList={campaignList} setCampaignList={setCampaignList} selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} strength={strength} setStrength={setStrength} dex={dex} setDex={setDex} con={con} setCon={setCon} int={int} setInt={setInt} wis={wis} setWis={setWis} cha={cha} setCha={setCha} acrobatics={acrobatics} setAcrobatics={setAcrobatics}  />
+          <CreateCharacter characterName={characterName} setCharacterName={setCharacterName} campaign={campaign} setCampaign={setCampaign} campaignList={campaignList} setCampaignList={setCampaignList} selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} strength={strength} setStrength={setStrength} dex={dex} setDex={setDex} con={con} setCon={setCon} int={int} setInt={setInt} wis={wis} setWis={setWis} cha={cha} setCha={setCha} acrobatics={acrobatics} setAcrobatics={setAcrobatics} />
         </Route>
         <Route path="/">
           <Homepage />
