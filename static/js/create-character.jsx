@@ -115,6 +115,11 @@ function CreateCharacter(props) {
   }
 
 //TODO: Accomidate additional languages.
+  function handleLanguageChange(evt) {
+    evt.preventDefault()
+    props.setLanguage(evt.target.value)
+    console.log(evt.target.value)
+  }
 
   return (
     <div>
