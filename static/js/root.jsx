@@ -28,8 +28,10 @@ function App() {
   const [height, setHeight] = React.useState('');
   const [homeland, setHomeland] = React.useState('');
   const [int, setInt] = React.useState('');
+  const [language, setLanguage] = React.useState('');
   const [level, setLevel] = React.useState(0);
   const [lName, setLName] = React.useState('');
+  const [occupation, setOccupation] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [password2, setPassword2] = React.useState('');
   const [race, setRace] = React.useState('');
@@ -81,7 +83,7 @@ function App() {
           <UserProfile characterName={characterName} setCharacterName={setCharacterName} userName={userName} campaignList={campaignList} setCampaignList={setCampaignList} characterList={characterList} setCharacterList={setCharacterList} currentCharacter={currentCharacter} setCurrentCharacter={setCurrentCharacter} />
         </Route>
         <Route path="/create-character">
-          <CreateCharacter characterName={characterName} setCharacterName={setCharacterName} campaign={campaign} setCampaign={setCampaign} campaignList={campaignList} setCampaignList={setCampaignList} selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} strength={strength} setStrength={setStrength} dex={dex} setDex={setDex} con={con} setCon={setCon} int={int} setInt={setInt} wis={wis} setWis={setWis} cha={cha} setCha={setCha} acrobatics={acrobatics} setAcrobatics={setAcrobatics} />
+          <CreateCharacter characterName={characterName} setCharacterName={setCharacterName} campaign={campaign} setCampaign={setCampaign} campaignList={campaignList} setCampaignList={setCampaignList} selectedCampaign={selectedCampaign} setSelectedCampaign={setSelectedCampaign} strength={strength} setStrength={setStrength} dex={dex} setDex={setDex} con={con} setCon={setCon} int={int} setInt={setInt} wis={wis} setWis={setWis} cha={cha} setCha={setCha} acrobatics={acrobatics} setAcrobatics={setAcrobatics} race={race} setRace={setRace} gender={gender} setGender={setGender} size={size} setSize={setSize} heiget={height} setHeight={setHeight} weight={weight} setWeight={setWeight} age={age} setAge={setAge} alignment={alignment} setAlignment={setAlignment} deity={deity} setDeity={setDeity} occupation={occupation} setOccupation={setOccupation} language={language} setLanguage={setLanguage} />
         </Route>
         <Route path="/">
           <Homepage />
