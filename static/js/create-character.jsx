@@ -121,6 +121,11 @@ function CreateCharacter(props) {
     console.log(evt.target.value)
   }
 
+  function handleAdditionalLanguage(evt) {
+    evt.preventDefault()
+    
+  }
+
   return (
     <div>
       <Form onSubmit={handleCreateCharacter} expand="lg">
